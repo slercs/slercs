@@ -345,260 +345,192 @@
 
 
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap');
-.profile h1 { font-family: 'UnifrakturMaguntia'; text-align: center; font-size: xx-large; color: white; text-shadow: 2px 2px black; }
-
-body{
-background: url(https://i.pinimg.com/564x/73/2c/09/732c09169383f6b9094d35a3f4de342a.jpg) no-repeat fixed;
-background-size: cover;
-text-transform: lowercase;
+body {
+    background: #000;
+    font-family: Arial, Verdana, sans-serif;
 }
-
-nav .top{
-margin-top: 10px;
-background: url(https://i.pinimg.com/564x/5a/2e/43/5a2e436be6d6f7a9d42de62202e31d7f.jpg);
-background-size: cover;
-    background-position-y: center;
-border: 1px solid white;
-border-radius: 5px;
-box-shadow: 0 0 8px white;
+p {
+    color: #fff;
 }
-
-nav .top .left .logo {
-    width: 165px;
-    height: 42px;
-    filter: drop-shadow(2px 4px 6px black);
-}
-
-button, input {
-    overflow: visible;
-    background: white;
-    color: black;
-    border: none;
-    box-shadow: 0 0 5px white;
-    border-radius: 5px;
-}
-
-nav .links {
-    background-color: transparent;
-    padding: 3.5px 16px;
-    text-align: center;
-    margin-top: 10px!important;
-    margin-bottom: 10px!important;
-}
-
-nav .links a {
-    text-decoration: none;
-    color: white;
-    text-shadow: 0 0 2px #000000, 0 0 2px #000000, 0 0 2px #000000, 0 0 2px #000000, 0 0 2px #000000, 0 0 2px #000000;
-    font-size: max(0.98em, 12px);
-}
-
-nav .links .special a {
-    color: white;
-}
-
-nav .links li:not(:last-child)::after, footer .links li:not(:last-child)::after {
-    content: " | ";
-    color: white;
-}
-
-main{
-background: url(https://i.pinimg.com/564x/83/db/b6/83dbb678c05d144ad491517113ba8e8c.jpg);
-    border: 1px solid white;
-    box-shadow: 0 0 10px white;
-    border-radius: 8px;
-    color: white;
-    text-shadow: 1px 1px black;
-}
-
-
-
-footer {
-    text-align: center;
-    font-size: 70%;
-    margin: 10px 0 10px;
-    padding: 10px 5px;
-    background-color: transparent;
-    color: white;
-}
-
 a {
-    color: white;
-    text-decoration: none;
+    color: #f00;
 }
-
-a:hover, a:active, .blog-entry .kudos-btn:hover, .blog-entry .kudos-btn:active {
-    color: #6da5ac;
-    text-decoration: none;
-    font-style: italic;
+.left.col {
+    background: linear-gradient(#535353 0%, #000 2%);
+    border-radius: 5px 5px 0px 0px;
+    border: 0px;    
+    padding: 5px;
+    color: #ffffff;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;
+    position: relative;
+    right: 4px;
 }
-
-.comments-table td:first-child, .music-table td:first-child {
-    background: #29282b;
-    text-align: center;
-    font-weight: bold;
-    width: 38%;
+.left .heading {
+    background: linear-gradient(#535353 0%, #000 60%) !important;
+    box-shadow: inset 0px 0px 5px 1px #535353;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: 1px solid #808080;
+    color: #ffffff;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;
+    padding: 3px !important;
 }
-
-.comments-table td, .music-table td {
-    background: #403f43;
-    vertical-align: top;
+.contact .heading {
+    background: none !important;
+    border: none !important;
+    box-shadow: none;
+    color: #ffffff;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;
 }
-
-.profile .blurbs .heading, .profile .friends .heading {
-    background: white;
-    color: black;
-    border-radius: 8px;
-    padding: 2px 7px;
-    box-shadow: 0 0 10px white, 0 0 5px white;
+.profile .table-section {
+    border-radius: 5px 5px 0px 0px;
+    border: 1px solid #808080;
 }
-
-.profile .contact, .profile .url-info, .profile .table-section, .setting-section, .home-actions {
-    width: 100%;
-    border: none;
-    margin: 10px 0;
-}
-
-.profile .contact .heading, .profile .table-section .heading, .setting-section .heading, .home-actions .heading {
-    background: white;
-    color: black;
-    padding: 2px 7px;
-    box-shadow: 0 0 5px white, 0 0 10px white;
-    border-radius: 8px;
-}
-
-.icon, .award img {
-    display: inline-block;
-    height: 1.4em;
-    width: 1.4em;
-    aspect-ratio: 1/1;
-    margin: 0 0.05em 0 0.1em;
-    vertical-align: -0.3em;
-    color: rgba(0,0,0,0);
-    filter: brightness(10);
-}
-
-.details-table td:first-child {
-    background: #29282b;
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    width: 33%;
-    box-shadow: 0 0 10px #ffffff, inset 3px 5px #5d5b68, inset -7px -9px #151617;
-    padding: 11px;
-}
-
 .details-table td {
-    background: #403f43;
-    vertical-align: top;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #ffffff, inset 5px 6px #cecaea61, inset -5px -7px #2a2a2e;
-    padding: 14px;
+    background: linear-gradient(#535353 0%, #000 60%) !important;
+    box-shadow: inset 0px 0px 0px 1px #808080, inset 0px 0px 5px 1px #535353, #000 1px 1px 10px 2px;;
+    border-radius: 10px 0px;
+    border: 0px;
+    padding-left: 5px !important;
+    color: #ffffff !important;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px; 
 }
-
-.profile-info{
-background: url(https://i.pinimg.com/564x/59/49/85/59498522322ca36103b706ab9b904984.jpg);
-    background-position: center;
-    border: 1px solid white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px white;
+.profile .contact {
+    border-radius: 5px 5px 0px 0px;
+    border: none;  
+    background: linear-gradient(#535353 0%, #000 20%);
 }
-
-.profile .blurbs .section h4 {
-    margin: 0;
-    color: white;
-    text-transform: uppercase;
+.right.col {
+    background: linear-gradient(#535353 0%, #000 2%);
+    border-radius: 5px 5px 0px 0px;
+    border: 0px;
+    padding: 5px;
+    position: relative;
+    left: 4px;
+    margin-left: 5px;
+    color: #ffffff;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;
 }
-
-.count {
-    color: white;
+main {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px 10px 15px;
+    background: black;
+    box-shadow: inset 0px 0px 0px 1px #808080, inset 0px 0px 10px 2px #535353;
 }
-
-.profile .friends .person p {
-    color: inherit;
-    font-weight: bold;
-    width: 100%;
-    overflow-wrap: break-word;
-    word-break: break-word;
-    font-size: 100%;
-    text-align: center;
+nav .top {
+    margin-top: 10px;
+    border-radius: 5px;
+    background: linear-gradient(#535353 0%, #000 69%);
+    box-shadow: inset 0px 0px 0px 1px #808080, inset 0px 0px 10px 2px #535353;
+    border: 0px;
+    padding: 4px;
 }
-
-img.pfp-fallback {
-    border: 1px solid white;
-    box-shadow: 0 0 10px white;
-    border-radius: 8px;
+nav .links {
+    background: linear-gradient(#535353 0%, #222 60%) !important;
+    box-shadow: inset 0px 0px 0px 1px #808080, inset 0px 0px 5px 1px #535353, #000 1px 1px 10px 2px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 0px;
+    padding-left: 10px !important;
+    color: #ffffff !important;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;
+    padding: 5px;
+    position: relative;
+    gap: 5px;
+    justify-content: center;
 }
-
-::-webkit-scrollbar {
-    width: 12px;
-    background-color: #fff;
+nav .links a {
+    text-shadow: 1px 1px 0px #000;
 }
-
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: black;
+nav .links a:hover {
+    color: #f00;
+    text-decoration: none;
+    text-shadow: 1px 1px 0px #000;
 }
-
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    border-radius: 10px;
-    background-color: #fff;
+.top .right a {
+    text-shadow: 1px 1px 0px #000;    
 }
-
-.profile .friends .person img:not(.icon), .comments-table td:first-child img:not(.icon) {
-    max-width: 95px;
-    max-height: 95px;
-    display: block;
-    margin: 0 auto;
-    filter: grayscale(1);
+.logout-btn {
+    text-shadow: 1px 1px 0px #000 !important;     
 }
-
-.online {
-    color: #0C8C00;
-    font-weight: bold;
-    font-size: 95%;
-    filter: saturate(0) brightness(10);
+body > div.container > nav > ul > li.special {
+    display: none;
 }
-
-body::before {
-    content: " ";
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background: linear-gradient(rgb(15 18 82 / 48%) 50%, rgb(0 0 0 / 0%) 50%);
-    z-index: 2;
-    background-size: 100% 2px, 3px 100%;
-    pointer-events: none;
+body > div.container > nav > ul > li:nth-child(12) {
+    display: none;
 }
-
-.col, main, footer, nav::before, .online, nav .links, nav .top {
-    animation: float 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+body > div.container > nav > ul > li:nth-child(3) {
+    display: none;
 }
-
-.col, main, footer, nav::before, .online, nav .links, nav .top {
-animation: float 3s;
-animation-iteration-count: infinite;
-animation-timing-function: ease-in-out;
+body > div.container > nav > ul > li:nth-child(13) {
+    border: none;
 }
-@keyframes float {
-0% { transform: translate(0, 0px);
+nav li {
+    font-size: 0pt;
+    padding-right: 5px;
+    border-right: 2px ridge #555555;
 }
-50% {
-transform: translate(0, 8px);
+.right .heading {
+    background: linear-gradient(#535353 0%, #000 60%) !important;
+    box-shadow: inset 0px 0px 0px 1px #808080, inset 0px 0px 5px 1px #535353, #000 1px 1px 10px 2px;;
+    border-radius: 50px 0px;
+    border: 0px;
+    padding-left: 10px !important;
+    color: #ffffff !important;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;    
 }
-100% {
-transform: translate(0, -0px);
+.comments-table {
+    border: 0px;
 }
-
+.comments-table td {
+    border: 0px;
+    background: linear-gradient(#535353 0%, #000 20%) !important;
+    border-radius: 5px 5px 0px 0px;
+    border: 0px;
+    padding: 5px;
+    color: #ffffff;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;
+    top: -32px;
+}
+.url-info {
+    border: none !important;
+    background: linear-gradient(#535353 0%, #000 40%);
+    border-radius: 5px 5px 0px 0px;
+    border: 0px;
+    padding: 5px;
+    color: #ffffff;
+    text-shadow: 2px 1px 0px #000;
+    font-size: 13px;
+    top: -32px;
+}
+.comments-table .pfp-fallback {
+    border: 2px ridge #555555;
+}
+.person .pfp-fallback {
+    border: 2px ridge #555555;    
+}
+.profile-pic .pfp-fallback {
+    border: 2px ridge #555555;     
+}
+#comments > div.inner > table > tbody > tr > td:nth-child(1) {
+    background: none;
+}
+.comment-replies {
+    border: none;
+    border-top: 2px ridge #555555;
+}
+footer {
+    background: none;
+}
 </style>
 but im a creep im a weirdo what the hell am i doing here? i dont belong here.
 
