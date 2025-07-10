@@ -2607,17 +2607,12 @@ blink {
   max-width: 305px;
   border: 1px solid #000;
   margin-bottom: 14px;
-  overflow: hidden;
+  cursor: pointer;
 }
 
 .music-box iframe {
-  position: relative;
-  width: 100%;
-  height: 60px;
-  border: none;
-  z-index: 1;
+  display: none; /* 👈 hide the actual SoundCloud player */
 }
-
 
 .music-box div {
   position: absolute;
