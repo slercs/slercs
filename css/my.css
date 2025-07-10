@@ -2611,14 +2611,13 @@ blink {
 }
 
 .music-box iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 47px;
-  opacity: 0.0000001;
-  z-index: 0;
+  height: 60px;
+  border: none;
+  z-index: 1;
 }
+
 
 .music-box div {
   position: absolute;
