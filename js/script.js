@@ -282,6 +282,28 @@ function deleteCookie(name) {
   setCookie(name, '', -1);
 }
 
+function playSound(box) {
+  const iframe = box.querySelector("iframe");
+  const widget = SC.Widget(iframe);
+
+  // Pause all others first
+  players.forEach(p => p.pause());
+
+  if (!iframe.dataset.ready) {
+    players.push(widget);
+    iframe.dataset.ready = "true";
+
+    widget.bind(SC.Widget.Events.READY, function () {
+      widget.play();
+    });
+  } else {
+    widget.isPaused(function(paused) {
+      paused ? widget.play() : widget.pause();
+    });
+  }
+}
+
+
 /*
 // https://stackoverflow.com/a/1533945
 $('.artproject-randomize-btn').click(function() {
