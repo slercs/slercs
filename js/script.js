@@ -304,6 +304,29 @@ function playSound(box) {
 }
 
 
+let audioPlayer = null;
+
+function toggleAudio(box) {
+  const audio = box.querySelector("audio");
+
+  if (!audioPlayer) audioPlayer = audio;
+
+  // If a different audio is already playing, pause it
+  if (audio !== audioPlayer && !audioPlayer.paused) {
+    audioPlayer.pause();
+  }
+
+  // Toggle play/pause
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+
+  audioPlayer = audio;
+}
+
+
 /*
 // https://stackoverflow.com/a/1533945
 $('.artproject-randomize-btn').click(function() {
