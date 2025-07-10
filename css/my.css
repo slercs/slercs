@@ -2584,6 +2584,7 @@ blink {
   }
 }
 
+
 @supports(-webkit-touch-callout: none) {
   /* Safari on iOS */
   input {
@@ -2595,4 +2596,42 @@ blink {
     /* button text on ios is blue by default, make it black instead (like it should be) */
     color: black !important;
   }
+}
+
+
+.music-box {
+  position: relative;
+  background: url('https://static.tumblr.com/bpdtqce/eNEnoonrt/musicplayer.png') no-repeat top left;
+  background-size: 100% 100%;
+  height: 50px;
+  max-width: 305px;
+  border: 1px solid #000;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.music-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 47px;
+  opacity: 0.0000001;
+  z-index: 0;
+}
+
+.music-box div {
+  position: absolute;
+  top: 10px;
+  left: 55px;
+  color: white;
+  font-size: 12px;
+  font-weight: normal;
+  z-index: 1;
+}
+
+.music-box span {
+  display: block;
+  width: 240px;
+  text-align: left;
 }
