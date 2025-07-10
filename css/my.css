@@ -2598,7 +2598,6 @@ blink {
   }
 }
 
-
 .music-box {
   position: relative;
   background: url('https://static.tumblr.com/bpdtqce/eNEnoonrt/musicplayer.png') no-repeat top left;
@@ -2606,12 +2605,8 @@ blink {
   height: 50px;
   max-width: 305px;
   border: 1px solid #000;
-  margin-bottom: 14px;
+  margin: 10px auto;
   cursor: pointer;
-}
-
-.music-box iframe {
-  display: none; /* 👈 hide the actual SoundCloud player */
 }
 
 .music-box div {
@@ -2620,7 +2615,6 @@ blink {
   left: 55px;
   color: white;
   font-size: 12px;
-  font-weight: normal;
   z-index: 1;
 }
 
@@ -2629,3 +2623,8 @@ blink {
   width: 240px;
   text-align: left;
 }
+
+.music-box audio {
+  display: none;
+}
+
