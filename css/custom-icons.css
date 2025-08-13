@@ -1,0 +1,54 @@
+.fak.fa-applemusic, .fa-kit.fa-applemusic { --fa: "\e010"; }
+.fak.fa-bitcoin, .fa-kit.fa-bitcoin { --fa: "\e006"; }
+.fak.fa-buymeacoffee, .fa-kit.fa-buymeacoffee { --fa: "\e013"; }
+.fak.fa-cashapp, .fa-kit.fa-cashapp { --fa: "\e00d"; }
+.fak.fa-ethereum, .fa-kit.fa-ethereum { --fa: "\e007"; }
+.fak.fa-genius, .fa-kit.fa-genius { --fa: "\e000"; }
+.fak.fa-instagram, .fa-kit.fa-instagram { --fa: "\e00b"; }
+.fak.fa-kick, .fa-kit.fa-kick { --fa: "\e008"; }
+.fak.fa-ko-fi, .fa-kit.fa-ko-fi { --fa: "\e014"; }
+.fak.fa-labynet, .fa-kit.fa-labynet { --fa: "\e004"; }
+.fak.fa-litecoin, .fa-kit.fa-litecoin { --fa: "\e005"; }
+.fak.fa-mojang, .fa-kit.fa-mojang { --fa: "\e012"; }
+.fak.fa-namemc, .fa-kit.fa-namemc { --fa: "\e003"; }
+.fak.fa-onlyfans, .fa-kit.fa-onlyfans { --fa: "\e001"; }
+.fak.fa-osu, .fa-kit.fa-osu { --fa: "\e015"; }
+.fak.fa-rhythia, .fa-kit.fa-rhythia { --fa: "\e016"; }
+.fak.fa-roblox, .fa-kit.fa-roblox { --fa: "\e002"; }
+.fak.fa-rockstargames, .fa-kit.fa-rockstargames { --fa: "\e00f"; }
+.fak.fa-snapchat, .fa-kit.fa-snapchat { --fa: "\e00a"; }
+.fak.fa-solana, .fa-kit.fa-solana { --fa: "\e009"; }
+.fak.fa-supercell, .fa-kit.fa-supercell { --fa: "\e011"; }
+.fak.fa-telegram, .fa-kit.fa-telegram { --fa: "\e00c"; }
+.fak.fa-valorant, .fa-kit.fa-valorant { --fa: "\e00e"; }
+
+.fak, .fa-kit {
+  --fa-family: 'Font Awesome Kit';
+  --fa-style: 400;
+
+  --_fa-family: var(--fa-family, var(--fa-style-family, "Font Awesome Kit"));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: var(--fa-display, inline-block);
+  font-family: var(--_fa-family);
+  font-style: normal;
+  font-synthesis: none;
+  font-variant: normal;
+  font-weight: var(--fa-style, 400);
+  line-height: 1;
+  text-align: center;
+  text-rendering: auto;
+  width: var(--fa-width, 1.25em);
+}
+
+.fak::before, .fa-kit::before {
+  content: var(--fa);
+  content: var(--fa)/"";
+}
+
+@font-face {
+  font-family: "Font Awesome Kit";
+  font-style: normal;
+  font-display: block;
+  src: url("../fonts/custom-icons.woff2") format("woff2");
+}
