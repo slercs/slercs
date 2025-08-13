@@ -1,29 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head><script id="audio-hook">
-// Hook the global Audio constructor to capture the site's MP3 player instance.
-// This must run before the async Next.js bundles execute.
-(function(){
-  try {
-    var OriginalAudio = window.Audio;
-    function WrappedAudio(src) {
-      var a = new OriginalAudio(src);
-      try {
-        // Save a reference so UI can control it.
-        window._siteAudio = a;
-        // Default to muted so mobile autoplay can start; user can unmute via button.
-        a.muted = true;
-      } catch(e){}
-      return a;
-    }
-    // preserve prototype chain
-    WrappedAudio.prototype = OriginalAudio.prototype;
-    try { Object.setPrototypeOf(WrappedAudio, OriginalAudio); } catch(e){ WrappedAudio.__proto__ = OriginalAudio; }
-    window.Audio = WrappedAudio;
-  } catch(e){ /* ignore */ }
-})();
-</script>
+<head>
 <link href="images/icon.png" rel="icon" sizes="32x32" type="image/png"/>
 <script id="force-title">
 (function(){
@@ -409,37 +387,46 @@
   } catch(e){}
   setTimeout(setViews, 1500);
 })();
-</script><script id="mute-toggle-script">
+</script><audio id="bg-music" loop="True" preload="auto" src="music/slercscom.mp3" style="display:none"></audio><script id="mute-toggle-script">
 (function(){
-  var b = document.getElementById('mute-toggle');
-  if (!b) return;
-  function getAudio(){ return window._siteAudio || null; }
-  function getVideo(){ return document.querySelector('video'); }
-  function sync(){
-    var a = getAudio(), v = getVideo();
-    var unmuted = false;
-    if (a) { unmuted = unmuted || (!a.muted && a.volume > 0.001); }
-    if (v) { unmuted = unmuted || (!v.muted); }
-    b.textContent = unmuted ? '🔊' : '🔇';
+  var a = document.getElementById('bg-music');
+  if (!a) return;
+  // Start muted until user interacts, per mobile policies
+  a.muted = true;
+
+  var b = document.getElementById('mute-toggle'); // use your existing button
+  function icon(){ return (!a.muted && a.volume > 0.001 && !a.paused) ? '🔊' : '🔇'; }
+  function sync(){ if (b) b.textContent = icon(); }
+
+  // One-time start on first user gesture
+  function kick(){
+    try {
+      a.play().then(function(){ /* ok */ }).catch(function(){ /* ignore */ });
+    } catch(e){}
+    document.removeEventListener('click', kick, true);
+    document.removeEventListener('touchstart', kick, true);
+    sync();
   }
-  b.addEventListener('click', function(){
-    try{
-      var a = getAudio(), v = getVideo();
-      if (a) {
-        a.muted = !a.muted;
-        if (!a.muted) { a.volume = 1.0; a.play && a.play().catch(function(){}); }
-      }
-      if (v && !a) { // only fall back to video if no mp3
-        v.muted = !v.muted;
-        if (!v.muted && v.paused) { v.play().catch(function(){}); }
+  document.addEventListener('click', kick, true);
+  document.addEventListener('touchstart', kick, true);
+
+  // Button toggles mute/unmute & (re)plays when unmuted
+  if (b){
+    b.addEventListener('click', function(){
+      a.muted = !a.muted;
+      if (!a.muted) {
+        a.volume = 1.0;
+        try { a.play().catch(function(){}); } catch(e){}
       }
       sync();
-    } catch(e){}
-  });
-  // Keep icon updated when the Next app swaps audio instances
-  var iv = setInterval(sync, 500);
+    });
+  }
+
+  a.addEventListener('play', sync);
+  a.addEventListener('pause', sync);
+  a.addEventListener('volumechange', sync);
+  a.addEventListener('loadedmetadata', sync);
   document.addEventListener('visibilitychange', sync);
-  window.addEventListener('focus', sync);
   sync();
 })();
 </script></body>
