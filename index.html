@@ -844,7 +844,10 @@
     (function () {
       var channelId = "UC5mLO916kA9atH4AjB586kw";
       var sourceUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId;
-      var feedUrl = "https://api.allorigins.win/raw?url=" + encodeURIComponent(sourceUrl);
+      var feedUrls = [
+        "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(sourceUrl),
+        "https://api.allorigins.win/raw?url=" + encodeURIComponent(sourceUrl)
+      ];
 
       function getFirstByLocalName(parent, name) {
         var nodes = parent.getElementsByTagName("*");
@@ -866,14 +869,48 @@
         titleEl.textContent = title || ("Video " + slot);
       }
 
-      fetch(feedUrl, { cache: "no-store" })
-        .then(function (res) {
-          if (!res.ok) throw new Error("Feed fetch failed");
-          return res.text();
-        })
+      function fetchWithTimeout(url, timeoutMs) {
+        var controller = new AbortController();
+        var timeout = setTimeout(function () {
+          controller.abort();
+        }, timeoutMs);
+
+        return fetch(url, { cache: "no-store", signal: controller.signal })
+          .then(function (res) {
+            clearTimeout(timeout);
+            if (!res.ok) throw new Error("Feed fetch failed");
+            return res.text();
+          })
+          .catch(function (err) {
+            clearTimeout(timeout);
+            throw err;
+          });
+      }
+
+      function fetchFeedXml() {
+        var index = 0;
+        function tryNext() {
+          if (index >= feedUrls.length) {
+            return Promise.reject(new Error("All feed providers failed"));
+          }
+          var url = feedUrls[index++];
+          return fetchWithTimeout(url, 5000).catch(tryNext);
+        }
+        return tryNext();
+      }
+
+      fetchFeedXml()
         .then(function (xmlText) {
           var xml = new DOMParser().parseFromString(xmlText, "application/xml");
-          var entries = Array.prototype.slice.call(xml.getElementsByTagName("entry"), 0, 2);
+          var entries = Array.prototype.slice.call(xml.getElementsByTagName("entry"), 0);
+          entries.sort(function (a, b) {
+            var aPublished = getFirstByLocalName(a, "published");
+            var bPublished = getFirstByLocalName(b, "published");
+            var aTime = aPublished ? new Date(aPublished.textContent).getTime() : 0;
+            var bTime = bPublished ? new Date(bPublished.textContent).getTime() : 0;
+            return bTime - aTime;
+          });
+          entries = entries.slice(0, 2);
           if (!entries.length) return;
 
           entries.forEach(function (entry, index) {
@@ -884,7 +921,8 @@
             updateSlot(index + 1, videoId, title);
           });
         })
-        .catch(function () {
+        .catch(function (err) {
+          console.warn("Unable to refresh latest YouTube uploads.", err);
           // Keep fallback hardcoded cards if feed fails.
         });
     })();
