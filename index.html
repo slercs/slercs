@@ -276,23 +276,23 @@
               <p><b>Displaying <span class="count">2</span> most recent uploads</b></p>
               <div class="videos-grid">
                 <div class="video-card">
-                  <a class="video-link" id="yt-video-link-1" href="https://www.youtube.com/@slercsk/videos"
+                  <a class="video-link" id="yt-video-link-1" href="https://www.youtube.com/watch?v=v87erbwH1gk"
                     target="_blank" rel="noopener ugc">
                     <span class="video-thumb" id="yt-video-thumb-1"
-                      style="background-image:url('https://i.ytimg.com/vi/0bGSs4Dp2LU/hqdefault.jpg');">
+                      style="background-image:url('https://i.ytimg.com/vi/v87erbwH1gk/hqdefault.jpg');">
                       <span class="video-play" aria-hidden="true"></span>
                     </span>
-                    <span class="video-title" id="yt-video-title-1">I got lost in the middle of the woods...</span>
+                    <span class="video-title" id="yt-video-title-1">GashFM NYFW event went crazy... (Tezzus, Mikebrokeasf, Diamond + more)</span>
                   </a>
                 </div>
                 <div class="video-card">
-                  <a class="video-link" id="yt-video-link-2" href="https://www.youtube.com/@slercsk/videos"
+                  <a class="video-link" id="yt-video-link-2" href="https://www.youtube.com/watch?v=0bGSs4Dp2LU"
                     target="_blank" rel="noopener ugc">
                     <span class="video-thumb" id="yt-video-thumb-2"
-                      style="background-image:url('https://i.ytimg.com/vi/FfzpTqss54k/hqdefault.jpg');">
+                      style="background-image:url('https://i.ytimg.com/vi/0bGSs4Dp2LU/hqdefault.jpg');">
                       <span class="video-play" aria-hidden="true"></span>
                     </span>
-                    <span class="video-title" id="yt-video-title-2">I broke my back ice skating...</span>
+                    <span class="video-title" id="yt-video-title-2">I got lost in the middle of the woods...</span>
                   </a>
                 </div>
               </div>
@@ -839,94 +839,6 @@
 
   <link rel="stylesheet" href="css/important.css">
 
-
-  <script>
-    (function () {
-      var channelId = "UC5mLO916kA9atH4AjB586kw";
-      var sourceUrl = "https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId;
-      var feedUrls = [
-        "https://api.codetabs.com/v1/proxy/?quest=" + encodeURIComponent(sourceUrl),
-        "https://api.allorigins.win/raw?url=" + encodeURIComponent(sourceUrl)
-      ];
-
-      function getFirstByLocalName(parent, name) {
-        var nodes = parent.getElementsByTagName("*");
-        for (var i = 0; i < nodes.length; i++) {
-          if (nodes[i].localName === name) return nodes[i];
-        }
-        return null;
-      }
-
-      function updateSlot(slot, videoId, title) {
-        var link = document.getElementById("yt-video-link-" + slot);
-        var thumb = document.getElementById("yt-video-thumb-" + slot);
-        var titleEl = document.getElementById("yt-video-title-" + slot);
-        if (!link || !thumb || !titleEl || !videoId) return;
-
-        var watchUrl = "https://www.youtube.com/watch?v=" + videoId;
-        link.href = watchUrl;
-        thumb.style.backgroundImage = "url('https://i.ytimg.com/vi/" + videoId + "/hqdefault.jpg')";
-        titleEl.textContent = title || ("Video " + slot);
-      }
-
-      function fetchWithTimeout(url, timeoutMs) {
-        var controller = new AbortController();
-        var timeout = setTimeout(function () {
-          controller.abort();
-        }, timeoutMs);
-
-        return fetch(url, { cache: "no-store", signal: controller.signal })
-          .then(function (res) {
-            clearTimeout(timeout);
-            if (!res.ok) throw new Error("Feed fetch failed");
-            return res.text();
-          })
-          .catch(function (err) {
-            clearTimeout(timeout);
-            throw err;
-          });
-      }
-
-      function fetchFeedXml() {
-        var index = 0;
-        function tryNext() {
-          if (index >= feedUrls.length) {
-            return Promise.reject(new Error("All feed providers failed"));
-          }
-          var url = feedUrls[index++];
-          return fetchWithTimeout(url, 5000).catch(tryNext);
-        }
-        return tryNext();
-      }
-
-      fetchFeedXml()
-        .then(function (xmlText) {
-          var xml = new DOMParser().parseFromString(xmlText, "application/xml");
-          var entries = Array.prototype.slice.call(xml.getElementsByTagName("entry"), 0);
-          entries.sort(function (a, b) {
-            var aPublished = getFirstByLocalName(a, "published");
-            var bPublished = getFirstByLocalName(b, "published");
-            var aTime = aPublished ? new Date(aPublished.textContent).getTime() : 0;
-            var bTime = bPublished ? new Date(bPublished.textContent).getTime() : 0;
-            return bTime - aTime;
-          });
-          entries = entries.slice(0, 2);
-          if (!entries.length) return;
-
-          entries.forEach(function (entry, index) {
-            var idNode = getFirstByLocalName(entry, "videoId");
-            var titleNode = getFirstByLocalName(entry, "title");
-            var videoId = idNode ? idNode.textContent.trim() : "";
-            var title = titleNode ? titleNode.textContent.trim() : "";
-            updateSlot(index + 1, videoId, title);
-          });
-        })
-        .catch(function (err) {
-          console.warn("Unable to refresh latest YouTube uploads.", err);
-          // Keep fallback hardcoded cards if feed fails.
-        });
-    })();
-  </script>
 
   <div id="extension-kjloo"></div>
 </body>
